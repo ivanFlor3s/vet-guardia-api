@@ -13,6 +13,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "sequelize": "^6.33.0",
+    "sequelize-msnodesqlv8": "^0.2.6-beta.8",
     "tedious": "^16.6.0"
   }
 }
