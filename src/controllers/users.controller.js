@@ -1,13 +1,17 @@
-import { response, request } from "express";
+import { response, request } from 'express';
 
-export const getUsers = async (req= request, res=response) => {
+export const getUsers = async (req = request, res = response) => {
     res.json({
-        msg: "get API - controller"
+        msg: 'get API - controller',
     });
-  };
+};
 
-  export const getUserId = async (req= request, res=response) => {
+export const getUserId = async (req = request, res = response) => {
     res.json({
-        msg: "get user id - controller"
+        msg: 'get user id - controller',
     });
-  }
+};
+
+export const createUser = async (req = request, res = response) => {
+    //CREAR USUARIO
+};

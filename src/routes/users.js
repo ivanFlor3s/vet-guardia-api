@@ -5,3 +5,4 @@ export const router = Router();
 
 router.get("/", getUsers);
 router.get("/getById", getUserId)
+// router.post("/", createUser )
