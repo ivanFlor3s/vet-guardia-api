@@ -1,5 +1,15 @@
 <script setup>
+    import { ref } from 'vue';
 
+
+    const nombreVeterinaria = ref("")
+    const email = ref("")
+    const direccion = ref("")
+    const telefono = ref("")
+
+    function registrar(e){
+        e.preventDefault()
+    }
 
 </script>
 
@@ -8,19 +18,19 @@
 <form class="row g-3">
   <div class="col-md-6">
     <label for="veterinaria" class="form-label">Nombre de veterinaria</label>
-    <input type="text" class="form-control" id="veterinaria">
+    <input v-model="nombreVeterinaria" type="text" class="form-control" id="veterinaria">
   </div>
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail4">
+    <input v-model="email" type="email" class="form-control" id="inputEmail4">
   </div>
   <div class="col-md-6">
     <label for="direccion" class="form-label">Direccion</label>
-    <input type="text" class="form-control" id="direccion">
+    <input v-model="direccion" type="text" class="form-control" id="direccion">
   </div>
   <div class="col-12">
     <label for="telefono" class="form-label">Telefono</label>
-    <input type="tel" class="form-control" id="telefono">
+    <input v-model="telefono" type="tel" class="form-control" id="telefono">
   </div>
   <div class="mb-3">
   <label for="formFile" class="form-label">Constancia de veterinaria</label>
@@ -28,7 +38,7 @@
 </div>
 
   <div class="col-12">
-    <button type="submit" class="btn btn-primary">Registrar</button>
+    <button @click="registrar($event)" type="submit" class="btn btn-primary">Registrar</button>
   </div>
 </form>
 
