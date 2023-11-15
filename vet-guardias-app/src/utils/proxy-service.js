@@ -1,8 +1,13 @@
-import axios from 'axios' 
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
-const API_URL='http://localhost:3000/api/v1/'
+const API_URL = 'http://localhost:3000/api/v1/'
 
-export const postVeterinaria = (datosVeterinaria) => {
-    axios.post(API_URL + 'veterinarias',datosVeterinaria )
-        .then( alert('salio todo ok'))
+export const postVeterinaria = async (datosVeterinaria) => {
+    try {
+        await axios.post(API_URL + 'veterinarias', datosVeterinaria)
+        Swal.fire('Exito', 'Veterinaria creada satisfactoriamente', 'success')
+    } catch (error) {
+        Swal.fire('Error :(', 'No se pudo crear la veterinaria', 'error')        
+    }
 }
