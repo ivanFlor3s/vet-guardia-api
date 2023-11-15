@@ -1,6 +1,6 @@
 <script setup>
     import { ref } from 'vue';
-
+    import Swal from 'sweetalert2';
 
     const nombreVeterinaria = ref("")
     const email = ref("")
@@ -11,6 +11,12 @@
     function registrar(e){
         e.preventDefault()
         checkFormulario()
+        Swal.fire({
+        title: 'Error!',
+        text: 'Do you want to continue',
+        icon: 'success',
+        confirmButtonText: 'Cool'
+        })
     }
 
     function checkFormulario(){
