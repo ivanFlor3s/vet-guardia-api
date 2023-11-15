@@ -1,5 +1,6 @@
 import express from "express";
 import * as dotenv from 'dotenv';
+import cors from 'cors'
 
 import { router } from "./src/routes/users.js";
 import { sequelize } from "./src/db/config.js";
@@ -12,6 +13,7 @@ dotenv.config();
 
 const app = express();
 
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/v1/users', router );
