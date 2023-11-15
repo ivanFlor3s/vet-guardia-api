@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../db/config.js';
+import { Veterinaria } from './veterinaria.js';
 // import bcrypt from 'bcrypt';
 
 export class User extends Model {
@@ -58,13 +59,3 @@ User.init(
         timestamps: true,
     }
 );
-
-// User.beforeCreate(async (user) => {
-//     const salt = await bcrypt.genSalt();
-//     user.salt = salt;
-
-//     const passwordHash = await bcrypt.hash(user.password, salt);
-//     // const passwordHash= await bcrypt.hash(user.password, 10)
-//     user.password = passwordHash;
-// });
-
