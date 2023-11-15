@@ -6,23 +6,36 @@
     const email = ref("")
     const direccion = ref("")
     const telefono = ref("")
+    let mostrarErrorNombre = ref(false)
 
     function registrar(e){
         e.preventDefault()
+        checkFormulario()
+    }
+
+    function checkFormulario(){
+        mostrarErrorNombre.value = nombreVeterinaria.value == ""  
+
     }
 
 </script>
 
 
 <template>
-<form class="row g-3">
+<form class="row g-3" novalidate>
   <div class="col-md-6">
     <label for="veterinaria" class="form-label">Nombre de veterinaria</label>
-    <input v-model="nombreVeterinaria" type="text" class="form-control" id="veterinaria">
+    <input v-model="nombreVeterinaria" type="text" class="form-control" id="veterinaria" :class="{ 'is-invalid': mostrarErrorNombre }" >
+    <div class="invalid-feedback" v-if="mostrarErrorNombre">
+      Campo requerido.
+    </div>
+  </div>
+  <div v-if="mostrarErrorNombre">
+    no tiene valor
   </div>
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Email</label>
-    <input v-model="email" type="email" class="form-control" id="inputEmail4">
+    <input v-model="email" type="email" class="form-control" id="inputEmail4" >
   </div>
   <div class="col-md-6">
     <label for="direccion" class="form-label">Direccion</label>
