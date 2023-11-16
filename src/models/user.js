@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import { sequelize } from '../db/config.js';
+import { sequelize } from '../config/config-db.js';
 import { Veterinaria } from './veterinaria.js';
 // import bcrypt from 'bcrypt';
 

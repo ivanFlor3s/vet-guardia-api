@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import cors from 'cors'
 
 import { router } from "./src/routes/users.js";
-import { sequelize } from "./src/db/config.js";
+import { sequelize } from "./src/config/config-db.js";
 
 import { configRelations } from "./src/models/relations.js";
 import { veterinariasRouter } from "./src/routes/veterinarias.js";
