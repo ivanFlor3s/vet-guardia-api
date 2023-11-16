@@ -41,3 +41,24 @@ export const remove = async (req = request, res = response) => {
         res.status(500).send(new ApiResponse(null, error.message));
     }
 };
+
+
+export const update = async (req = request, res = response) => {
+    const { id } = req.params;
+    const { nombreVeterinaria, telefono, email, direccion } = req.body;
+    try {
+        const veterinaria = await Veterinaria.findByPk(id);
+        if (!veterinaria) {
+            res.status(404).send(new ApiResponse(null, 'No se encontro la veterinaria'));
+        } else {
+            veterinaria.name = nombreVeterinaria;
+            veterinaria.tel = telefono;
+            veterinaria.address = direccion;
+            await veterinaria.save();
+            res.status(200).send(new ApiResponse(veterinaria, 'Se actualizo la veterinaria'));
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(new ApiResponse(null, error.message));
+    }
+}
