@@ -5,4 +5,5 @@ export const veterinariasRouter = Router();
 
 veterinariasRouter.post("/", veterinaria.create )
 veterinariasRouter.get("/", veterinaria.getAll )
-// router.post("/", createUser )
+veterinariasRouter.delete("/:id", veterinaria.remove )
+veterinariasRouter.put("/:id", veterinaria.update )
