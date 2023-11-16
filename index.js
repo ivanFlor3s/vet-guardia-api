@@ -13,11 +13,12 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use('/api/v1/users', router );
-app.use('/api/v1/veterinarias', veterinariasRouter)
+app.use('/api/v1/veterinarias', veterinariasRouter);
 
 //TODO agregar midleware para manejar errores     
 
