@@ -7,6 +7,7 @@ export const postVeterinaria = async (datosVeterinaria) => {
     try {
         await axios.post(API_URL + 'veterinarias', datosVeterinaria)
         Swal.fire('Exito', 'Veterinaria creada satisfactoriamente', 'success')
+        return true
     } catch (error) {
         Swal.fire('Error :(', 'No se pudo crear la veterinaria', 'error')        
     }
