@@ -25,3 +25,19 @@ export const getAll = async (req = request, res = response) => {
         res.status(500).send(new ApiResponse(null, error.message));
     }
 };
+
+export const remove = async (req = request, res = response) => {
+    const { id } = req.params;
+    try {
+        const veterinaria = await Veterinaria.findByPk(id);
+        if (!veterinaria) {
+            res.status(404).send(new ApiResponse(null, 'No se encontro la veterinaria'));
+        } else {
+            await veterinaria.destroy();
+            res.status(200).send(new ApiResponse(veterinaria, 'Se elimino la veterinaria'));
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(new ApiResponse(null, error.message));
+    }
+};
