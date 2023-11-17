@@ -2,6 +2,7 @@ import { response, request } from 'express';
 import bcrypt from 'bcryptjs';
 import { User } from '../models/user.js';
 import { ApiResponse } from '../core/response.js';
+import { generarJWT } from '../utils/generate-jwt.js';
 
 export const create = async (req = request, res = response) => {
     let { name, lastName, email, password } = req.body;
@@ -30,7 +31,9 @@ export const login = async (req = request, res = response) => {
             if (!validate) {
                 res.status(404).send(new ApiResponse(null, 'Contraseña incorrecta'));
             } else {
-                res.status(200).send(new ApiResponse(user, 'Se logueo el usuario'));
+                const {name, lastName, email} = user;
+                const token = await generarJWT({name, lastName, email});
+                res.status(200).send(new ApiResponse({token}, 'Se logueo el usuario'));
             }
         }
     } catch (error) {
