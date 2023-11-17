@@ -47,9 +47,6 @@ User.init(
                 },
             },
         },
-        salt: {
-            type: DataTypes.STRING,
-        },
         password: {
             type: DataTypes.STRING,
         },
