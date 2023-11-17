@@ -44,7 +44,7 @@ export class Server {
 
             configRelations();
 
-            await sequelize.sync({ force: false })
+            await sequelize.sync({ force: true, alter: true })
             console.log('Connected to database')
         } catch (error) {
             console.error('Unable to connect to the database');
