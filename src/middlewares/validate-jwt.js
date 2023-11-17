@@ -5,18 +5,18 @@ import { ApiResponse } from "../core/response.js";
 
 export const validarJwt = async (req = request, res = response, next) =>{
 
-    console.log('req params middleware', req.params)
+    let token = req.headers['x-token'] || req.headers['x-access-token'] || req.headers['authorization']; 
+    token = token.replace(/^Bearer\s+/, "");
 
-    const TOKEN = req.header('x-token')
 
-    if(!TOKEN){
+    if(!token){
         return res.status(401).json(new ApiResponse(null, 'No hay token en la peticion'))
     }
 
     try {
 
         //Obtengo el uid del payload
-        const {id} = jwt.verify(TOKEN, process.env.SECRET_KEY)
+        const {id} = jwt.verify(token, process.env.SECRET_KEY)
 
         //Leer el usuario que corresponde al uid
         const usuario = await User.findByPk(id)
