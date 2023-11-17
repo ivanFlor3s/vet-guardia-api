@@ -37,6 +37,7 @@ User.init(
         },
         email: {
             type: DataTypes.STRING,
+            unique: true,
             validate: {
                 isEmail: {
                     msg: 'Tiene que tener formato de email',
