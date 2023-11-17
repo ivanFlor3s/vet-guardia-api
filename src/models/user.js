@@ -37,6 +37,7 @@ User.init(
         },
         email: {
             type: DataTypes.STRING,
+            unique: true,
             validate: {
                 isEmail: {
                     msg: 'Tiene que tener formato de email',
@@ -45,9 +46,6 @@ User.init(
                     msg: 'no puede estar vacio',
                 },
             },
-        },
-        salt: {
-            type: DataTypes.STRING,
         },
         password: {
             type: DataTypes.STRING,
