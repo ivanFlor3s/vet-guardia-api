@@ -6,12 +6,13 @@ import { ApiResponse } from "../core/response.js";
 export const validarJwt = async (req = request, res = response, next) =>{
 
     let token = req.headers['x-token'] || req.headers['x-access-token'] || req.headers['authorization']; 
-    token = token.replace(/^Bearer\s+/, "");
 
 
     if(!token){
         return res.status(401).json(new ApiResponse(null, 'No hay token en la peticion'))
     }
+
+    token = token.replace(/^Bearer\s+/, "");
 
     try {
 
