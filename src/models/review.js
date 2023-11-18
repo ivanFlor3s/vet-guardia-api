@@ -8,24 +8,7 @@ export class Review extends Model {
 }
 
 Review.init(
-    {
-        UserId: {
-            primaryKey: true,
-            type: DataTypes.INTEGER,
-            references: {
-              model: User, 
-              key: 'id'
-            },
-          },
-          VeterinariaId: {
-            primaryKey: true,
-            type: DataTypes.INTEGER,
-            references: {
-              model: Veterinaria,
-              key: 'id'
-            },
-          },
-          
+    {     
         score: {
             type: DataTypes.FLOAT,
             allowNull: false,
@@ -38,7 +21,7 @@ Review.init(
         comment: {
             type: DataTypes.STRING(100),
             allowNull: true,
-        },
+        }
     },
     {
         sequelize,

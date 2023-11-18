@@ -2,6 +2,7 @@ import { response, request } from 'express';
 import { Veterinaria } from '../models/veterinaria.js';
 import { ApiResponse } from '../core/response.js';
 import { Op } from 'sequelize';
+import { Review } from '../models/review.js';
 
 export const create = async (req = request, res = response) => {
     const { nombreVeterinaria, telefono, email, direccion } = req.body;
@@ -56,6 +57,22 @@ export const update = async (req = request, res = response) => {
             veterinaria.address = direccion;
             await veterinaria.save();
             res.status(200).send(new ApiResponse(veterinaria, 'Se actualizo la veterinaria'));
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(new ApiResponse(null, error.message));
+    }
+}
+
+export const getById = async (req = request, res = response) => {
+    const { id } = req.params;
+    try {
+        const veterinaria = await Veterinaria.findByPk(id);
+        if (!veterinaria) {
+            res.status(404).send(new ApiResponse(null, 'No se encontro la veterinaria'));
+        } else {
+            const reviews = await Review.findAll({where: {VeterinariumId: id}})
+            res.status(200).send(new ApiResponse({'veterinaria': {...veterinaria.dataValues, reviews}, }, 'Se obtuvo la veterinaria'));
         }
     } catch (error) {
         console.log(error);
