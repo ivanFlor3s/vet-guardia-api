@@ -5,10 +5,10 @@ import cors from 'cors';
 import { sequelize } from './config/config-db.js';
 import { configRelations } from './models/relations.js';
 
-
 //ROUTES
 import { veterinariasRouter } from './routes/veterinarias.router.js';
 import { router } from './routes/users.router.js';
+import { reviewsRouter } from './routes/reviews.routes.js';
 
 const BASE_API_URL= '/api/v1';
 
@@ -20,6 +20,7 @@ export class Server {
         this.routes = {
             users: `${BASE_API_URL}/users`,
             veterinarias: `${BASE_API_URL}/veterinarias`,
+            reviews: `${BASE_API_URL}/reviews`,
         };
 
         //Connect to db
@@ -36,14 +37,13 @@ export class Server {
     configRoutes() {
         this.app.use(this.routes.users, router);
         this.app.use(this.routes.veterinarias, veterinariasRouter);
+        this.app.use(this.routes.reviews, reviewsRouter);
     }
 
     async conectDb() {
         try {
             await sequelize.authenticate();
-
             configRelations();
-
             await sequelize.sync({ force: false, alter: true })
             console.log('Connected to database')
         } catch (error) {
